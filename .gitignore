@@ -1,0 +1,7 @@
+config.env
+.env
+.npm 
+logs
+*.log
+npm-debug.log*
+/node_modules
