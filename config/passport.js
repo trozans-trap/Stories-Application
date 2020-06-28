@@ -6,7 +6,7 @@ module.exports = async (passport)=>{
     passport.use(new GoogleStrategy({
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: '/auth/google/callback'
+        callbackURL: '/auth/google/callback',
     },
     async (accessToken, refreshtoken, profile, done)=>{
             console.log(profile);
@@ -15,7 +15,7 @@ module.exports = async (passport)=>{
                 displayName: profile.displayName,
                 firstName: profile.name.givenName,
                 lastName: profile.name.familyName,
-                image: profile.photos[0].value
+                image: profile.photos[0].value,
             }
 
             console.log(newUser)
@@ -32,7 +32,9 @@ module.exports = async (passport)=>{
             } catch (err) {
                 console.error(err)
             }
-    }))
+        }
+      ) 
+    )
 
     passport.serializeUser((user,done)=>{
         done(null, user.id)
