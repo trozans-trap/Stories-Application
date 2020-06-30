@@ -15,3 +15,18 @@ exports.postStories = async (req,res) => {
         res.render('error/500');
     }
 }
+
+exports.getPublicStories = async (req,res) => {
+    try{
+        const stories = await Story.find({status: 'public'})
+           .populate('User')
+           .sort({ createdAt: 'desc'})
+           .lean();
+
+        res.render('stories/viewall');
+
+    } catch(err){
+        console.error(err);
+        res.render('error/500');
+    }
+}
