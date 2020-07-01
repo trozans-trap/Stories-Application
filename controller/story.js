@@ -17,9 +17,10 @@ exports.postStories = async (req,res) => {
 }
 
 exports.getPublicStories = async (req,res) => {
+    console.log(req.user)
     try{
         const stories = await Story.find({status: 'public'})
-           .populate('User')
+           .populate('user')
            .sort({ createdAt: 'desc'})
            .lean();
 
