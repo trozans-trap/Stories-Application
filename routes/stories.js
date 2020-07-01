@@ -19,4 +19,5 @@ router.put('/:id', ensureAuth, storiesController.updateStory);
 
 router.delete('/:id', ensureAuth, storiesController.deleteStory);
 
+router.get('/user/:userId', ensureAuth, storiesController.moreFromUser);
 module.exports = router ; 

@@ -54,6 +54,25 @@ exports.readFullStory = async (req,res)=>{
     }
 }
 
+exports.moreFromUser = async (req,res)=>{
+    try{
+      const stories = await Story.find({
+          user: req.params.userId,
+          status: 'public',
+      })
+       .populate('user')
+       .lean()
+
+       res.render('stories/viewall',{
+           stories
+       })
+    } catch(err){
+          console.error(err);
+          res.render('error/500')
+    }
+
+}
+
 exports.getEditStory = async (req, res) => {
     const story = await Story.findOne({
         _id: req.params.id
