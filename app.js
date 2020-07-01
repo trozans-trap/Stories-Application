@@ -26,12 +26,14 @@ if(process.env.NODE_ENV === 'development'){
    app.use(morgan('dev'));
 }
 //handlebar helpers
-const {formatDate } = require('./helpers/hbs');
+const {formatDate, stripTags, truncate } = require('./helpers/hbs');
 
 //handlebars
 app.engine('.hbs',exphbs({
     helpers: {
         formatDate,
+        stripTags,
+        truncate,
     },
      defaultLayout: 'main' ,
       extname: '.hbs'

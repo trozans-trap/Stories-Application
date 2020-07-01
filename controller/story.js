@@ -23,7 +23,9 @@ exports.getPublicStories = async (req,res) => {
            .sort({ createdAt: 'desc'})
            .lean();
 
-        res.render('stories/viewall');
+        res.render('stories/viewall',{
+            stories
+        });
 
     } catch(err){
         console.error(err);
