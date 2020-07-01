@@ -34,6 +34,26 @@ exports.getPublicStories = async (req, res) => {
     }
 }
 
+exports.readFullStory = async (req,res)=>{
+    try{
+        let story = await Story.findById(req.params.id)
+          .populate('user')
+          .lean()
+
+        if (!story) {
+            return res.render('error/404');
+        }
+
+        res.render('stories/show',{
+            story
+        })
+
+    } catch(err){
+        console.error(err);
+        res.render('error/404');
+    }
+}
+
 exports.getEditStory = async (req, res) => {
     const story = await Story.findOne({
         _id: req.params.id
