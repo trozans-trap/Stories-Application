@@ -14,4 +14,6 @@ router.get('/edit/:id', ensureAuth, storiesController.getEditStory);
 
 router.put('/:id', ensureAuth, storiesController.updateStory);
 
+router.delete('/:id', ensureAuth, storiesController.deleteStory);
+
 module.exports = router ; 
